@@ -17,17 +17,37 @@ public class applyingforces : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             ourRigidBody.AddExplosionForce(500, transform.position + Vector3.down, 2);
         }
- 
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            ourRigidBody.AddForce(Vector3.left);
+        }
+
       
  }
     private void OnCollisionEnter(Collision collision)
     {
         print("Ouch");
-        collision.transform.position += Vector3.down;
+      Health objectHitHealth = collision.gameObject.GetComponent<Health>();
+
+        if (objectHitHealth)
+        {
+            print("Found Health script in object hit");
+            objectHitHealth.takeDamage(3);
+
+            int ObjectsMaxHealth = objectHitHealth.whatsYourMaxHealth();
+            if (ObjectsMaxHealth > 100)
+                objectHitHealth.takeDamage(100);
+
+        }
+        else
+        {
+          print("Couldn't find Health script in object hit");
+        }
+
     }
 
 
