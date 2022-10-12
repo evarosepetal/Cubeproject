@@ -5,7 +5,7 @@ using UnityEngine;
 public class cubecontrol : MonoBehaviour
 {
     private readonly float turningspeed=180;
-
+    public Transform cubeTemplate;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +35,19 @@ public class cubecontrol : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S))
             transform.position -= transform.forward* Time.deltaTime;
-    } 
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(cubeTemplate,
+                transform.position - transform.forward,
+                Quaternion.identity);
+        }
+            
+            
+            
+    } 
+         
+	
+
+	
 }
