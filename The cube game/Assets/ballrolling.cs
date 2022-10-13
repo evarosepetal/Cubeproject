@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ballrolling : MonoBehaviour
 {
+    private float rotateSpeed = 360;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,9 +15,9 @@ public class ballrolling : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-
-        }
+        
+            transform.rotation *= Quaternion.AngleAxis(rotateSpeed * Time.deltaTime, transform.right);
+ 
+        
     }
 }
